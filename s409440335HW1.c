@@ -1,5 +1,5 @@
 /**
- * @title HW_1
+ * @title s409440335HW1
  * @course 111-1 1119 Operating System; Teacher: WEI, HSIN-WEN
  * @task HW 1
  * @link https://iclass.tku.edu.tw/course/214705/learning-activity#/1327486
@@ -18,14 +18,16 @@
  * Include
  * - stdio
  *   - type FILE
+ *   - function fclose
  *   - function fgets
+ *   - function fopen
  *   - function printf
- *   - function scanf
  * - string
+ *   - function strcmp
+ *   - function strcpy
  *   - function strcspn
  */
 #include <stdio.h>
-// #include <stdlib.h>
 #include <string.h>
 
 /**
@@ -54,7 +56,7 @@
 struct fcopy {
 	int iStatus;
 	char sourceName[MAXSTR];
-    unsigned long sourceFileLen;
+	unsigned long sourceFileLen;
 	FILE *fSource;
 	char targetName[MAXSTR];
 	FILE *fTarget;
@@ -223,7 +225,7 @@ int wfGetTargetFile(struct fcopy *wgFcp) {
  */
 int wfCopyFile(struct fcopy *wgFcp) {
 	/* Initialize variables */
-    unsigned long counter;
+	unsigned long counter;
 	wgFcp->fSource = fopen(wgFcp->sourceName, "rb");
 	if (wgFcp->fSource == NULL) {
 		wgFcp->iStatus = 1;
@@ -243,17 +245,17 @@ int wfCopyFile(struct fcopy *wgFcp) {
 	}
 
 	/* Check file legnth */
-    fseek(wgFcp->fSource, 0, SEEK_END);
-    wgFcp->sourceFileLen = ftell(wgFcp->fSource);
-    fseek(wgFcp->fSource, 0, SEEK_SET);
+	fseek(wgFcp->fSource, 0, SEEK_END);
+	wgFcp->sourceFileLen = ftell(wgFcp->fSource);
+	fseek(wgFcp->fSource, 0, SEEK_SET);
 
-    for (counter = 0; counter < wgFcp->sourceFileLen; counter++) {
-        fputc(fgetc(wgFcp->fSource), wgFcp->fTarget);
-    }
+	for (counter = 0; counter < wgFcp->sourceFileLen; counter++) {
+		fputc(fgetc(wgFcp->fSource), wgFcp->fTarget);
+	}
 
-    /* After copy completed */
-    fclose(wgFcp->fSource);
-    fclose(wgFcp->fTarget);
+	/* After copy completed */
+	fclose(wgFcp->fSource);
+	fclose(wgFcp->fTarget);
 	wgFcp->iStatus = 0;
 	printf("Success: Specified file copied.\n");
 
