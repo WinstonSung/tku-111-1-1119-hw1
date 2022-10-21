@@ -45,7 +45,7 @@ int main() {
 	}
 
     printf("輸入新檔名: ");
-    scanf("%s", &check_file);
+    scanf("%s", &target);
     access = check_file(target);
 
     while (access) {
