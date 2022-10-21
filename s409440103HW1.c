@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 // Test whether the exists
-// name ªíÀÉ¦W
+// name è¡¨æª”å
 int check_file(char* target) {
     FILE *file = fopen(target, "rb");
     if (!file) {
@@ -19,13 +19,13 @@ int main() {
     char buffer[100];
     char target[100];
 
-    printf("½Ğ¿é¤JÀÉ¦W: ");
+    printf("è«‹è¼¸å…¥æª”å: ");
     scanf("%s", &target);
     int access = check_file(target);
     int choose;
-    // ÀÉ®×¤£¦s¦b 
+    // æª”æ¡ˆä¸å­˜åœ¨ 
     while (!access) {
-        printf("ÀÉ®×¤£¦s¦b¡C(1:Â÷¶} 2:­«Åª)");
+        printf("æª”æ¡ˆä¸å­˜åœ¨ã€‚(1:é›¢é–‹ 2:é‡è®€)");
         scanf("%d", &choose);
         if (choose == 1) {
             printf("Program ended\n");
@@ -44,12 +44,12 @@ int main() {
 		return -1;
 	}
 
-    printf("¿é¤J·sÀÉ¦W: ");
+    printf("è¼¸å…¥æ–°æª”å: ");
     scanf("%s", &check_file);
     access = check_file(target);
 
     while (access) {
-        printf("ÀÉ®×¤w¦s¦b (1:­«·s¿é¤J, 2:ÂĞ»\­ì¥»ÀÉ®×, 3:Â÷¶}): ");
+        printf("æª”æ¡ˆå·²å­˜åœ¨ (1:é‡æ–°è¼¸å…¥, 2:è¦†è“‹åŸæœ¬æª”æ¡ˆ, 3:é›¢é–‹): ");
         scanf("%d", &choose);
 		if (choose == 1) {
 	        printf("New file name: ");
@@ -81,4 +81,3 @@ int main() {
     fclose(copy);
     return 0;
 }
-
